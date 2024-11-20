@@ -443,7 +443,7 @@
     const frameImg = document.getElementById('frame-img');
     
     // Ensure the sliderValue stays within the range of available frames (0 to 62)
-    sliderValue = Math.max(0, Math.min(62, sliderValue)); // Ensure value is between 0 and 62
+    sliderValue = Math.max(0, Math.min(25, sliderValue)); // Ensure value is between 0 and 62
     
     // Pad the sliderValue with leading zeros to match the file naming format (000000.jpg, 000001.jpg, ..., 000062.jpg)
     const paddedFrameValue = String(sliderValue).padStart(6, '0');
@@ -457,7 +457,7 @@
   const slider = document.getElementById('frame-slider');
 
   // Set the slider's max value to the number of available frames minus 1 (since index starts at 0)
-  slider.max = 62;
+  slider.max = 25;
 
   slider.addEventListener('input', function() {
     const sceneName = document.getElementById('current-scene').value; // Get the current scene name from the hidden input
