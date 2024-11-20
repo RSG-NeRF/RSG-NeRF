@@ -441,13 +441,13 @@
   // Function to update the displayed frame based on the slider value
   function updateFrame(sliderValue, sceneName) {
     const frameImg = document.getElementById('frame-img');
-    
-    // Ensure the sliderValue stays within the range of available frames (0 to 62)
-    sliderValue = Math.max(0, Math.min(25, sliderValue)); // Ensure value is between 0 and 62
-    
-    // Pad the sliderValue with leading zeros to match the file naming format (000000.jpg, 000001.jpg, ..., 000062.jpg)
+
+    // Adjust sliderValue to match image numbering (1 to 25)
+    sliderValue = Math.max(1, Math.min(25, parseInt(sliderValue))); // Ensure value is between 1 and 25
+
+    // Pad the sliderValue with leading zeros to match the file naming format (000001.jpg, ..., 000025.jpg)
     const paddedFrameValue = String(sliderValue).padStart(6, '0');
-    
+
     // Construct the path based on scene and padded frame number
     const videoPath = `static/images/sg/${sceneName}/${paddedFrameValue}.jpg`;
     frameImg.src = videoPath;
@@ -456,47 +456,31 @@
   // Function to handle the slider value change
   const slider = document.getElementById('frame-slider');
 
-  // Set the slider's max value to the number of available frames minus 1 (since index starts at 0)
-  slider.max = 25;
+  // Set the slider's min and max values to match image numbering
+  slider.min = 1; // Start from 1
+  slider.max = 25; // End at 25
 
-  slider.addEventListener('input', function() {
+  slider.addEventListener('input', function () {
     const sceneName = document.getElementById('current-scene').value; // Get the current scene name from the hidden input
     updateFrame(slider.value, sceneName);
   });
 
   // Function to select frame based on thumbnail click
   function selectFrame(element) {
-    var imageName = element.getAttribute('data-value');
+    const imageName = element.getAttribute('data-value');
     const slider = document.getElementById('frame-slider');
-    
-    // Map the scene names to their respective starting frames (optional, if you want specific frames for each scene)
-    const frameNumber = {
-      'baby': 0,
-      'bear': 0,
-      'bell': 0,
-      'clock': 0,
-      'deaf': 0,
-      'farmer': 0,
-      'pavillon': 0,
-      'sculpture': 0,
-      'scan24':0,
-      'scan37':0,
-      'scan40':0,
-      'scan55':0,
-      'scan63':0
-    };
 
     // Set the scene name in the hidden input
     document.getElementById('current-scene').value = imageName;
-    
-    // Set slider to the first frame of the selected scene
-    slider.value = frameNumber[imageName] || 0;  // Default to 0 if not found
+
+    // Reset slider to the first frame of the selected scene (1 by default)
+    slider.value = 1;
     updateFrame(slider.value, imageName);
   }
 
   // Initialize by displaying the first frame for the 'baby' scene
-  document.getElementById('current-scene').value = 'baby';  // Default scene
-  updateFrame(0, 'baby');
+  document.getElementById('current-scene').value = 'baby'; // Default scene
+  updateFrame(1, 'baby'); // Initialize with the first image
 </script>
 
 <style>
