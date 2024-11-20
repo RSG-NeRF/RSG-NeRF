@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <meta name="google-site-verification" content="GNu68NbqJUZfuiEzwKsL3XQUvm4ld16m3Hz1ixNFbJ0" /> -->
+  <title>Robust SG-NeRF: Robust Scene Graph Aided Neural Surface Reconstruction</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Robust SG-NeRF:<br> Robust Scene Graph Aided Neural Surface Reconstruction</h1>
+          <h1 style="font-size:1.5rem"> Anonymous Submission</h1>
+          <!-- <h1 style="font-size:1.5rem"> Paper ID  9213</h1> -->
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block">
+              <a>Anonymous</a><sup></sup>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span> -->
+
+              <!-- <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span> -->
+            <!-- <span class="author-block">
+              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+            </span> -->
+          </div>
+
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Washington,</span>
+           <span class="author-block"><sup>2</sup>Google Research</span>
+          </div>   -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+           <!--   <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper - 115MB</span>
+                </a>
+              </span> -->
+
+              <!-- <span class="link-block">
+                <a href="static\Robust_SG_NeRF.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static\images\sg_cmp_page-0001.jpg" 
+           alt="Preview Image" 
+           style="width:100%; height:auto;" />
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+
+        <p style="font-size:14px; ">
+          Neural surface reconstruction relies heavily on accurate camera poses as input. 
+          Despite utilizing advanced pose estimators like COLMAP or ARKit, camera poses can still be noisy.
+          Existing pose-NeRF joint optimization methods handle poses with <strong>small noise (inliers) effectively</strong>
+          but <strong>struggle with large noise (outliers)</strong>, such as mirrored poses. 
+<!-- 
+        </p>
+        <p style="font-size:14px; "> -->
+          In this work, we focus on mitigating the impact of outlier poses. 
+          Our method integrates an <strong>inlier-outlier confidence estimation scheme</strong>, 
+          leveraging <em>scene graph</em> information gathered during the data preparation phase.
+          Unlike previous works directly using rendering metrics as the reference, 
+          we employ a <strong>detached color network</strong> that omits the viewing direction as input to minimize the impact caused by shape-radiance ambiguities.
+          This enhanced confidence updating strategy effectively differentiates between inlier and outlier poses, 
+          allowing us to sample more rays from inlier poses to construct more reliable radiance fields.
+          Additionally, we introduce a <strong>re-projection loss</strong> based on the current Signed Distance Function (SDF) and pose estimations, 
+          strengthening the constraints between matching image pairs. 
+          For <em>outlier poses</em>, we adopt a <strong>Monte Carlo re-localization</strong> method to find better solutions.
+          We also devise a <strong>scene graph updating strategy</strong> to provide more accurate information throughout the training process. 
+        <!-- </p>
+        <p style="font-size:14px; "> -->
+          We validate our approach on the SG-NeRF and DTU datasets. 
+          Experimental results on various datasets demonstrate that our methods can consistently improve the reconstruction qualities and pose accuracies.
+        </p>
+        
+          
+        
+          <!-- <p>
+            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
+            photos/videos into deformable NeRF
+            models that allow for photorealistic renderings of the subject from arbitrary
+            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
+            using a
+            rig with two mobile phones that take time-synchronized photos, yielding train/validation
+            images of the same pose at different viewpoints. We show that our method faithfully
+            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
+            fidelity.
+          </p> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<!-- <input type="hidden" id="current-scene" value="baby"> -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Visual Comparisons -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-3">Visual Comparisons</h3>
+        <div class="content has-text-justified">
+
+          <div class="text-center">
+              <!-- Video Container (hidden for frame control) -->
+              <div class="video-container" style="display:none;">
+                  <video id="compVideo0" class="video" style="height: 280px; max-width: 100%;" loop playsinline muted>
+                      <source id="videoSource" src="static/videos/baby.mp4" />
+                  </video>
+              </div>
+              <br>
+              <!-- <h1 style="font-size:1.5rem">SG-NeRF (left) vs Robust SG-NeRF (right)</h1> -->
+              <p class="text-justify" style="text-align: center;">
+              <strong>SG-NeRF (left)</strong>    <em>v.s.</em>    <strong>Ours (right)</strong>
+              </p>
+              
+              <!-- Slider and Frame Display -->
+              <div class="columns is-centered interpolation-panel">
+                  <div class="column is-full">
+                    <!-- Frame display area -->
+                    <div id="frame-display" style="max-width: 100%; text-align: center;">
+                      <img id="frame-img" src="static/images/baby_first.png" alt="video frame" style="width: 100%; height: auto;"/>
+                    </div>
+                    <!-- Slider to control frame -->
+                    <input class="slider is-fullwidth is-large is-info"
+                           id="frame-slider"
+                           step="1" min="0" max="100" value="0" type="range">
+                  </div>
+              </div>
+
+              <!-- Thumbnail Images -->
+              <div class="pill-row scene-pills" id="scene-pills">
+                  <span class="pill scene-pill" data-value="baby" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="baby">
+                    <img class="thumbnail-img" src="static/images/baby.png" alt="baby" width="64">
+                  </span>
+                  <span class="pill scene-pill" data-value="bear" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="bear">
+                    <img class="thumbnail-img" src="static/images/bear.png" alt="bear" width="64">
+                  </span>
+                  <span class="pill scene-pill" data-value="bell" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="bell">
+                    <img class="thumbnail-img" src="static/images/bell.png" alt="bell" width="64">
+                  </span>
+                  <span class="pill scene-pill" data-value="clock" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="clock">
+                    <img class="thumbnail-img" src="static/images/clock.png" alt="clock" width="64">
+                  </span>
+                  <span class="pill scene-pill" data-value="deaf" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="deaf">
+                    <img class="thumbnail-img" src="static/images/deaf.png" alt="deaf" width="64">
+                  </span>
+                  <span class="pill scene-pill" data-value="farmer" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="farmer">
+                    <img class="thumbnail-img" src="static/images/farmer.png" alt="farmer" width="64">
+                  </span>
+                  <span class="pill scene-pill" data-value="pavillon" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="pavillon">
+                    <img class="thumbnail-img" src="static/images/pavillon.png" alt="pavillon" width="64">
+                  </span>
+                  <span class="pill scene-pill" data-value="sculpture" onclick="selectFrame(this)">
+                    <input type="hidden" id="current-scene" value="sculpture">
+                    <img class="thumbnail-img" src="static/images/sculpture.png" alt="sculpture" width="64">
+                  </span>
+              </div>
+
+              <div class="pill-row scene-pills" id="scene-pills">
+
+                <span class="pill scene-pill" data-value="scan24" onclick="selectFrame(this)">
+                  <input type="hidden" id="current-scene" value="scan24">
+                  <img class="thumbnail-img" src="static/images/scan24.png" alt="scan24" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="scan37" onclick="selectFrame(this)">
+                  <input type="hidden" id="current-scene" value="scan37">
+                  <img class="thumbnail-img" src="static/images/scan37.png" alt="scan37" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="scan40" onclick="selectFrame(this)">
+                  <input type="hidden" id="current-scene" value="scan40">
+                  <img class="thumbnail-img" src="static/images/scan40.png" alt="scan40" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="scan55" onclick="selectFrame(this)">
+                  <input type="hidden" id="current-scene" value="scan55">
+                  <img class="thumbnail-img" src="static/images/scan55.png" alt="scan55" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="scan63" onclick="selectFrame(this)">
+                  <input type="hidden" id="current-scene" value="scan63">
+                  <img class="thumbnail-img" src="static/images/scan63.png" alt="scan63" width="64">
+                </span>
+              </div>
+
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Function to update the displayed frame based on the slider value
+  function updateFrame(sliderValue, sceneName) {
+    const frameImg = document.getElementById('frame-img');
+    
+    // Ensure the sliderValue stays within the range of available frames (0 to 62)
+    sliderValue = Math.max(0, Math.min(62, sliderValue)); // Ensure value is between 0 and 62
+    
+    // Pad the sliderValue with leading zeros to match the file naming format (000000.jpg, 000001.jpg, ..., 000062.jpg)
+    const paddedFrameValue = String(sliderValue).padStart(6, '0');
+    
+    // Construct the path based on scene and padded frame number
+    const videoPath = `static/images/sg/${sceneName}/${paddedFrameValue}.jpg`;
+    frameImg.src = videoPath;
+  }
+
+  // Function to handle the slider value change
+  const slider = document.getElementById('frame-slider');
+
+  // Set the slider's max value to the number of available frames minus 1 (since index starts at 0)
+  slider.max = 62;
+
+  slider.addEventListener('input', function() {
+    const sceneName = document.getElementById('current-scene').value; // Get the current scene name from the hidden input
+    updateFrame(slider.value, sceneName);
+  });
+
+  // Function to select frame based on thumbnail click
+  function selectFrame(element) {
+    var imageName = element.getAttribute('data-value');
+    const slider = document.getElementById('frame-slider');
+    
+    // Map the scene names to their respective starting frames (optional, if you want specific frames for each scene)
+    const frameNumber = {
+      'baby': 0,
+      'bear': 0,
+      'bell': 0,
+      'clock': 0,
+      'deaf': 0,
+      'farmer': 0,
+      'pavillon': 0,
+      'sculpture': 0,
+      'scan24':0,
+      'scan37':0,
+      'scan40':0,
+      'scan55':0,
+      'scan63':0
+    };
+
+    // Set the scene name in the hidden input
+    document.getElementById('current-scene').value = imageName;
+    
+    // Set slider to the first frame of the selected scene
+    slider.value = frameNumber[imageName] || 0;  // Default to 0 if not found
+    updateFrame(slider.value, imageName);
+  }
+
+  // Initialize by displaying the first frame for the 'baby' scene
+  document.getElementById('current-scene').value = 'baby';  // Default scene
+  updateFrame(0, 'baby');
+</script>
+
+<style>
+  /* Centering the video container */
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  /* Adjust the spacing of the pill images */
+  .pill-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;  /* Increase the gap between thumbnail images */
+    margin-top: 20px;
+  }
+
+  .scene-pill {
+    cursor: pointer;
+  }
+
+  .thumbnail-img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Optional: Adds shadow to the thumbnails */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+  }
+
+  .thumbnail-img:hover {
+    transform: scale(1.1); /* Enlarges the thumbnail on hover */
+  }
+
+  /* Slider Style */
+  .slider {
+    margin-top: 20px;
+  }
+</style>
+
+<style>
+  /* Ensure the container takes full width */
+  .container.is-max-desktop {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+  }
+
+  /* Center the video and pill row */
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  /* Adjust the spacing of the pill images */
+  .pill-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;  /* Increase the gap between thumbnail images */
+    margin-top: 20px;
+  }
+
+  .scene-pill {
+    cursor: pointer;
+  }
+
+  .thumbnail-img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Optional: Adds shadow to the thumbnails */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+  }
+
+  .thumbnail-img:hover {
+    transform: scale(1.1); /* Enlarges the thumbnail on hover */
+  }
+
+  .slider {
+    margin-top: 20px;
+  }
+</style>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+          <!-- <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
